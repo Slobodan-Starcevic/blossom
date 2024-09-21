@@ -1,7 +1,7 @@
 {
-    "name": "starter-kit-v4",
+    "name": "blossom",
     "version": "1.0.0",
-    "description": "",
+    "description": "website of blossom web design",
     "main": "index.js",
     "scripts": {
         "watch:sass": "sass --watch src/assets/sass:./src/assets/css",
@@ -14,20 +14,21 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/CodeStitchOfficial/Intermediate-Website-Kit-SASS.git"
+        "url": "git+https://github.com/Slobodan-Starcevic/blossom.git"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/CodeStitchOfficial/Intermediate-Website-Kit-SASS/issues"
+        "url": "https://github.com/Slobodan-Starcevic/blossom/issues"
     },
-    "homepage": "https://github.com/CodeStitchOfficial/Intermediate-Website-Kit-SASS#readme",
+    "homepage": "https://github.com/Slobodan-Starcevic/blossom#readme",
     "dependencies": {
         "@11ty/eleventy": "^2.0.1",
         "@11ty/eleventy-navigation": "^0.3.5",
         "@quasibit/eleventy-plugin-sitemap": "^2.2.0",
         "@sherby/eleventy-plugin-files-minifier": "^1.1.1",
+        "blossom": "file:",
         "cross-env": "^7.0.3",
         "decap-server": "^3.0.1",
         "del-cli": "^5.0.0",

@@ -1,19 +1,20 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "Blossom Web Design",
+    "short_name": "Blossom",
     "icons": [
         {
-            "src": "/assets/favicons/android-chrome-192x192.png",
+            "src": "/src/assets/favicons/android-chrome-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "/assets/favicons/android-chrome-384x384.png",
-            "sizes": "384x384",
+            "src": "/src/assets/favicons/android-chrome-512x512.png",
+            "sizes": "512x512",
             "type": "image/png"
         }
     ],
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
+    "start_url": "htttps://www.blossomwebdesign.com",
     "display": "standalone"
 }

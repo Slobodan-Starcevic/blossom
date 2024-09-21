@@ -4,11 +4,11 @@ module.exports = {
     "phoneForTel": "0645607893",
     "phoneFormatted": "(+31) 6 345 078 93",
     "address": {
-        "lineOne": "Schoenmakerstraat 22",
+        "lineOne": "",
         "lineTwo": "",
         "city": "Eindhoven",
-        "state": "Noord-Brabant",
-        "zip": "5612AD",
+        "state": "",
+        "zip": "",
         "country": "NL",
         "mapLink": ""
     },

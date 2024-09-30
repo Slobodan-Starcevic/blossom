@@ -13,43 +13,21 @@
     --custom-ease-3: cubic-bezier(0.19,1,0.22,1);
     --custom-ease-4: cubic-bezier(0.63,0.03,0.21,1);
     --primary-ease: var(--custom-ease-1);
-    /* 13px - 16px */
-    --topperFontSize: clamp(0.8125rem, 1.6vw, 1rem);
-    /* 31px - 49px */
-    --headerFontSize: clamp(1.9375rem, 3.9vw, 3.0625rem);
-    --bodyFontSize: 1rem;
-    /* 60px - 100px top and bottom */
-    --sectionPadding: clamp(3.75rem, 7.82vw, 6.25rem) 1rem;
-  }
-  .topper {
-    display: block;
-    margin-bottom: 0.25rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: var(--topperFontSize);
-    line-height: 1.2em;
-    font-weight: 700;
-    color: var(--primary);
-    text-align: inherit;
-  }
-  .title {
-    position: relative;
-    margin: 0 0 1rem 0;
-    max-width: 43.75rem;
-    font-size: var(--headerFontSize);
-    line-height: 1.2em;
-    font-weight: 900;
-    color: var(--primary);
-    text-align: inherit;
-  }
-  .text {
-    margin: 0;
-    max-width: 40.625rem;
-    width: 100%;
-    font-size: var(--bodyFontSize);
-    line-height: 1.5em;
-    color: var(--primary);
-    text-align: inherit;
+    --spacing-2xs: .25rem;
+    --spacing-xs: .50rem;
+    --spacing-s: .75rem;
+    --spacing-m: 1rem;
+    --spacing-l: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 2.5rem;
+    --spacing-3xl: 3rem;
+    --spacing-4xl: 4rem;
+    --radius-xs: 4px;
+    --radius-s: 8px;
+    --radius-m: 12px;
+    --radius-l: 16px;
+    --radius-xl: 20px;
+    font-family: Montserrat, sans-serif;
   }
   .button-solid {
     z-index: 1;
@@ -117,7 +95,7 @@
   h5,
   h6 {
     margin: 0;
-    color: var(--secondaryLight);
+    color: var(--primary);
   }
   p,
   li,
@@ -147,7 +125,23 @@
     font-family: "Montserrat";
     font-style: normal;
     font-weight: 400;
-    src: url("/src/assets/fonts/montserrat-v26-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+    src: local("") url("../fonts/montserrat-v26-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+  /* montserrat-500 - latin */
+  @font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 500;
+    src: local("") url("../fonts/montserrat-v26-latin-500.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+  /* montserrat-600 - latin */
+  @font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 600;
+    src: local("") url("../fonts/montserrat-v26-latin-600.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
   }
   /* montserrat-700 - latin */
   @font-face {
@@ -155,7 +149,7 @@
     font-family: "Montserrat";
     font-style: normal;
     font-weight: 700;
-    src: url("/src/assets/fonts/montserrat-v26-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+    src: local("") url("../fonts/montserrat-v26-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
   }
   /* montserrat-900 - latin */
   @font-face {
@@ -163,7 +157,7 @@
     font-family: "Montserrat";
     font-style: normal;
     font-weight: 900;
-    src: url("/src/assets/fonts/montserrat-v26-latin-900.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+    src: local("") url("../fonts/montserrat-v26-latin-900.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
   }
 }
 /* Reset Margins */
@@ -195,6 +189,7 @@
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     background-color: rgba(236, 233, 229, 0.6);
+    transition: background-color 0.5s ease;
     width: 100%;
     height: 70px;
     box-sizing: border-box;
@@ -302,7 +297,7 @@
     height: 100vh;
     overflow: hidden;
     width: 100%;
-    transition: transform 0.4s, opacity 0.3s;
+    transition: transform 0.4s, opacity 0.3s, background-color 0.5s;
     transform-origin: top right;
   }
   #navigation .ul {
@@ -315,45 +310,37 @@
     width: 100%;
     overflow: hidden;
     /* 28px - 40px */
-    padding: 3rem clamp(1.75rem, 3vw, 2.5rem) 2rem 3.125rem;
-    gap: 0.5rem;
+    padding: 3rem clamp(1.75rem, 3vw, 2.5rem) 2rem clamp(1.75rem, 3vw, 2.5rem);
   }
   #navigation .li {
     opacity: 0;
     /* transition from these values */
-    transform: translateX(-2.5rem);
     margin-right: 0;
     width: 100%;
     list-style: none;
-    transition: transform 0.6s, opacity 0.9s;
+    transition: transform 0.6s var(--primary-ease), opacity 0.9s;
     text-align: left;
   }
   #navigation .li:nth-of-type(1) {
-    transition-delay: 0.05s;
-  }
-  #navigation .li:nth-of-type(2) {
     transition-delay: 0.1s;
   }
-  #navigation .li:nth-of-type(3) {
-    transition-delay: 0.15s;
-  }
-  #navigation .li:nth-of-type(4) {
+  #navigation .li:nth-of-type(2) {
     transition-delay: 0.2s;
   }
+  #navigation .li:nth-of-type(3) {
+    transition-delay: 0.3s;
+  }
+  #navigation .li:nth-of-type(4) {
+    transition-delay: 0.4s;
+  }
   #navigation .li:nth-of-type(5) {
-    transition-delay: 0.25s;
+    transition-delay: 0.5s;
   }
   #navigation .li:nth-of-type(6) {
     transition-delay: 0.3s;
   }
   #navigation .li:nth-of-type(7) {
     transition-delay: 0.35s;
-  }
-  #navigation .li:nth-of-type(8) {
-    transition-delay: 0.4s;
-  }
-  #navigation .li:nth-of-type(9) {
-    transition-delay: 0.45s;
   }
   #navigation .li-link {
     position: relative;
@@ -382,9 +369,11 @@
     display: block;
     height: 100vh;
     width: 0%;
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    background-color: rgba(236, 233, 229, 0.6);
+    transition: background-color 0.5s;
+    background-color: rgba(255, 255, 255, 0);
+  }
+  #navigation.active {
+    background-color: var(--secondary);
   }
   #navigation.active .ul-wrapper {
     opacity: 1;
@@ -397,6 +386,7 @@
     transform: translateX(0);
   }
   #navigation.active:before {
+    background-color: var(--secondary);
     opacity: 1;
     width: 100%;
   }
@@ -405,199 +395,8 @@
   }
   #navigation .company-details a {
     font-size: 17px;
+    font-weight: 700;
     color: var(--accent);
-  }
-}
-/*-- -------------------------- -->
-<---     Navigation Dropdown    -->
-<--- -------------------------- -*/
-/* Mobile - 1023px */
-@media only screen and (max-width: 63.9375rem) {
-  #navigation .dropdown {
-    position: relative;
-    color: var(--bodyTextColorWhite);
-  }
-  #navigation .dropdown .li-link {
-    position: relative;
-    transition: opacity 0.3s;
-  }
-  #navigation .dropdown.active .drop-ul {
-    visibility: visible;
-    opacity: 1;
-    transform: scale(1);
-    margin: 0.75rem 0 0 0;
-    height: auto;
-    padding: 1.5rem;
-  }
-  #navigation .dropdown.active .drop-link {
-    opacity: 1;
-  }
-  #navigation .dropdown-button {
-    border: none;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: clamp(1rem, 2.5vw, 1.5rem);
-    cursor: pointer;
-    appearance: none;
-  }
-  #navigation .drop-icon {
-    position: absolute;
-    top: 50%;
-    right: -1.25rem;
-    transform: translateY(-50%);
-    height: auto;
-    width: 0.9375rem;
-  }
-  #navigation .drop-ul {
-    visibility: hidden;
-    opacity: 0;
-    transform: scale(0);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-end;
-    margin: 0;
-    background-color: var(--primary);
-    height: 0;
-    width: 100%;
-    box-sizing: border-box;
-    overflow: hidden;
-    padding: 0 1.5rem 0 1.5rem;
-    transition: padding 0.3s, margin 0.3s, height 0.3s, opacity 0.3s, transform 0.3s, visibility 0.3s;
-    gap: 0.75rem;
-    transform-origin: top right;
-  }
-  #navigation .drop-li {
-    list-style: none;
-    text-align: inherit;
-  }
-  #navigation .li-link.drop-link {
-    /* 14px - 16px */
-    font-size: clamp(0.875rem, 2vw, 1.25rem);
-    color: #fff;
-  }
-}
-/* Desktop - 1024px */
-@media only screen and (min-width: 64rem) {
-  #navigation .dropdown {
-    position: relative;
-  }
-  #navigation .dropdown.active, #navigation .dropdown:hover {
-    cursor: pointer;
-  }
-  #navigation .dropdown.active .drop-ul, #navigation .dropdown:hover .drop-ul {
-    visibility: visible;
-    opacity: 1;
-    transform: scaleY(1);
-  }
-  #navigation .dropdown.active .drop-li, #navigation .dropdown:hover .drop-li {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  #navigation .dropdown-button {
-    border: none;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    cursor: pointer;
-    appearance: none;
-  }
-  #navigation .drop-icon {
-    display: inline-block;
-    height: auto;
-    width: 0.9375rem;
-  }
-  #navigation .drop-ul {
-    z-index: -100;
-    /* if you have 8 or more links in your dropdown nav, uncomment the columns property to make the list into 2 even columns. Change it to 3 or 4 if you need extra columns. Then remove the transition delays on the drop-li so they don't have weird scattered animations */
-    position: absolute;
-    top: 100%;
-    visibility: hidden;
-    opacity: 0;
-    transform: scaleY(0);
-    border-bottom: 5px solid var(--primary);
-    margin: 0;
-    background-color: #fff;
-    min-width: 12.5rem;
-    overflow: hidden;
-    padding: 0;
-    transition: transform 0.3s, visibility 0.3s, opacity 0.3s;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 10px 16px;
-    transform-origin: top;
-  }
-  #navigation .drop-li {
-    opacity: 0;
-    transform: translateY(-0.625rem);
-    display: block;
-    height: auto;
-    width: 100%;
-    list-style: none;
-    text-decoration: none;
-    font-size: 1rem;
-    color: var(--bodyTextColor);
-    transition: opacity 0.6s, transform 0.6s;
-  }
-  #navigation .drop-li:nth-of-type(1) {
-    transition-delay: 0.05s;
-  }
-  #navigation .drop-li:nth-of-type(2) {
-    transition-delay: 0.1s;
-  }
-  #navigation .drop-li:nth-of-type(3) {
-    transition-delay: 0.15s;
-  }
-  #navigation .drop-li:nth-of-type(4) {
-    transition-delay: 0.2s;
-  }
-  #navigation .drop-li:nth-of-type(5) {
-    transition-delay: 0.25s;
-  }
-  #navigation .drop-li:nth-of-type(6) {
-    transition-delay: 0.3s;
-  }
-  #navigation .drop-li:nth-of-type(7) {
-    transition-delay: 0.35s;
-  }
-  #navigation .drop-li:nth-of-type(8) {
-    transition-delay: 0.4s;
-  }
-  #navigation .drop-li:nth-of-type(9) {
-    transition-delay: 0.45s;
-  }
-  #navigation .drop-li:nth-of-type(10) {
-    transition-delay: 0.5s;
-  }
-  #navigation .drop-li:nth-of-type(11) {
-    transition-delay: 0.55s;
-  }
-  #navigation .drop-li:nth-of-type(12) {
-    transition-delay: 0.6s;
-  }
-  #navigation .drop-li:nth-of-type(13) {
-    transition-delay: 0.65s;
-  }
-  #navigation .li-link.drop-link {
-    display: block;
-    width: 100%;
-    /* prevents padding from affecting height and width */
-    box-sizing: border-box;
-    padding: 0.75rem;
-    white-space: nowrap;
-    text-decoration: none;
-    font-size: 1rem;
-    line-height: 1.5em;
-    color: var(--bodyTextColor);
-    transition: color 0.3s, background-color 0.3s;
-  }
-  #navigation .li-link.drop-link:hover {
-    background-color: #f7f7f7;
-  }
-  #navigation .li-link.drop-link:focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: -4px;
-  }
-  #navigation .li-link.drop-link:before {
-    display: none;
   }
 }
 /*-- -------------------------- -->
@@ -608,14 +407,13 @@
   #navigation {
     z-index: 10000;
     position: fixed;
-    background-color: var(--primary);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    background-color: rgba(236, 233, 229, 0.6);
     width: 100%;
     /* prevents padding from affecting height and width */
     box-sizing: border-box;
-    padding: 0 1rem;
-    /* remove the font family so the Stitch inherits the fonts from your global stylesheet */
-    font-family: Montserrat, sans-serif;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 0 var(--spacing-m);
   }
   #navigation .container {
     display: flex;
@@ -634,7 +432,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* margin-right auto pushes everything away from it to the right */
     margin: 0 auto 0 0;
     height: 4.0625rem;
     max-width: 21.875rem;
@@ -669,9 +466,9 @@
     margin: 0;
     text-decoration: none;
     /* 14px - 16px */
-    font-size: clamp(0.875rem, 1vw, 1rem);
+    font-size: 18px;
     line-height: 1.5em;
-    color: var(--bodyTextColor);
+    color: var(--primary);
   }
   #navigation .li-link:hover:before {
     width: 100%;
@@ -684,13 +481,29 @@
     content: "";
     opacity: 1;
     display: block;
-    background: var(--primary);
+    background: var(--accent);
     height: 2px;
     width: 0%;
     transition: width 0.3s;
   }
+  #navigation .li-link.active {
+    font-weight: 500;
+  }
   #navigation .li-link.active:before {
     width: 100%;
+  }
+  #navigation #nav-contact button {
+    appearance: none;
+    border: none;
+    background-color: var(--accent);
+    border-radius: var(--radius-l);
+    box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
+    box-sizing: border-box;
+    color: var(--secondary);
+    cursor: pointer;
+    display: inline-block;
+    line-height: 20px;
+    padding: 6px 16px;
   }
 }
 /*-- -------------------------- -->
